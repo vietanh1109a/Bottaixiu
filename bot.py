@@ -328,7 +328,7 @@ async def error_handler(update, context):
 def main() -> None:
     # Tạo ứng dụng với các cài đặt timeout qua ApplicationBuilder
     application = Application.builder()\
-        .token("7709674016:AAHeLGjlXvDGjH3GcA4LIbaUbp56LVPxwhc")\
+        .token("7588859368:AAGNI2p2vuT0HdjePw1_TKSpjjvYRa4Y0xc")\
         .get_updates_read_timeout(30)\
         .get_updates_write_timeout(30)\
         .get_updates_connect_timeout(30)\
