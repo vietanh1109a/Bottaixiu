@@ -430,27 +430,6 @@ async def taixiu(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         print(f"Lỗi không xác định trong hàm taixiu: {e}")
         await safe_send_message(update, context, f"{ICONS['error']} Có lỗi xảy ra, vui lòng thử lại sau.")
 
-# Hàm hiển thị trợ giúp
-async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    user_id = update.effective_user.id
-    
-    help_text = (
-        f"{ICONS['info']} Hướng Dẫn Sử Dụng Bot Tài Xỉu:\n\n"
-        f"{ICONS['dice']} Chơi tài xỉu: /taixiu [tai/xiu] [số tiền]\n"
-        f"{ICONS['wallet']} Xem số dư: /sodu\n"
-        f"{ICONS['history']} Xem lịch sử cầu: /cau\n"
-    )
-    
-    # Thêm hướng dẫn cho admin
-    if user_id in admin_ids:
-        help_text += (
-            f"\n{ICONS['admin']} Lệnh dành cho Admin:\n"
-            f"{ICONS['deposit']} Nạp tiền cho người chơi: /naptien [user_id] [số tiền]\n"
-            f"{ICONS['admin']} Quản lý admin: /admin [add/remove/list] [user_id]\n"
-        )
-    
-    await safe_send_message(update, context, help_text)
-
 # Hàm xử lý lỗi
 async def error_handler(update, context):
     print(f"Lỗi: {context.error}")
@@ -474,8 +453,6 @@ def main() -> None:
         .build()
 
     # Thêm các handlers
-    application.add_handler(CommandHandler("start", help_command))
-    application.add_handler(CommandHandler("help", help_command))
     application.add_handler(CommandHandler("sodu", check_balance))
     application.add_handler(CommandHandler("naptien", deposit))
     application.add_handler(CommandHandler("admin", admin_management))
